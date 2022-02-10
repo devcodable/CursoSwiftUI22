@@ -11,6 +11,12 @@
 		2072911D27B55C29003110FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072911C27B55C29003110FC /* ContentView.swift */; };
 		2072911F27B55C2E003110FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2072911E27B55C2E003110FC /* Assets.xcassets */; };
 		2072912227B55C2E003110FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2072912127B55C2E003110FC /* Preview Assets.xcassets */; };
+		2072912D27B56015003110FC /* CatalogModelServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072912C27B56015003110FC /* CatalogModelServer.swift */; };
+		2072912F27B56023003110FC /* CatalogModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072912E27B56023003110FC /* CatalogModelView.swift */; };
+		2072913127B5602D003110FC /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072913027B5602D003110FC /* CatalogView.swift */; };
+		2072913327B56039003110FC /* CatalogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072913227B56039003110FC /* CatalogViewModel.swift */; };
+		2072913527B5604C003110FC /* catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = 2072913427B5604C003110FC /* catalog.json */; };
+		2072913827B563BB003110FC /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072913727B563BB003110FC /* ProductView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		2072911C27B55C29003110FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2072911E27B55C2E003110FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2072912127B55C2E003110FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2072912C27B56015003110FC /* CatalogModelServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogModelServer.swift; sourceTree = "<group>"; };
+		2072912E27B56023003110FC /* CatalogModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogModelView.swift; sourceTree = "<group>"; };
+		2072913027B5602D003110FC /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
+		2072913227B56039003110FC /* CatalogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewModel.swift; sourceTree = "<group>"; };
+		2072913427B5604C003110FC /* catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = catalog.json; sourceTree = "<group>"; };
+		2072913727B563BB003110FC /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,9 @@
 		2072911927B55C29003110FC /* AppleDEXtore */ = {
 			isa = PBXGroup;
 			children = (
+				2072913627B563AE003110FC /* Components */,
+				2072912927B55FF9003110FC /* UseCases */,
+				2072912827B55FF3003110FC /* JSON */,
 				2072911A27B55C29003110FC /* AppleDEXtoreApp.swift */,
 				2072911C27B55C29003110FC /* ContentView.swift */,
 				2072911E27B55C2E003110FC /* Assets.xcassets */,
@@ -65,6 +80,49 @@
 				2072912127B55C2E003110FC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2072912827B55FF3003110FC /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				2072913427B5604C003110FC /* catalog.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		2072912927B55FF9003110FC /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				2072912A27B56000003110FC /* Catalog */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		2072912A27B56000003110FC /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				2072912B27B5600A003110FC /* Models */,
+				2072913027B5602D003110FC /* CatalogView.swift */,
+				2072913227B56039003110FC /* CatalogViewModel.swift */,
+			);
+			path = Catalog;
+			sourceTree = "<group>";
+		};
+		2072912B27B5600A003110FC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2072912C27B56015003110FC /* CatalogModelServer.swift */,
+				2072912E27B56023003110FC /* CatalogModelView.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2072913627B563AE003110FC /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2072913727B563BB003110FC /* ProductView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2072912227B55C2E003110FC /* Preview Assets.xcassets in Resources */,
+				2072913527B5604C003110FC /* catalog.json in Resources */,
 				2072911F27B55C2E003110FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2072912F27B56023003110FC /* CatalogModelView.swift in Sources */,
 				2072911D27B55C29003110FC /* ContentView.swift in Sources */,
+				2072913327B56039003110FC /* CatalogViewModel.swift in Sources */,
+				2072912D27B56015003110FC /* CatalogModelServer.swift in Sources */,
+				2072913827B563BB003110FC /* ProductView.swift in Sources */,
 				2072911B27B55C29003110FC /* AppleDEXtoreApp.swift in Sources */,
+				2072913127B5602D003110FC /* CatalogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
