@@ -69,7 +69,6 @@
 				2072911A27B55C29003110FC /* AppleDEXtoreApp.swift */,
 				2072911C27B55C29003110FC /* ContentView.swift */,
 				2072911E27B55C2E003110FC /* Assets.xcassets */,
-				2072912027B55C2E003110FC /* Preview Content */,
 			);
 			path = AppleDEXtore;
 			sourceTree = "<group>";
