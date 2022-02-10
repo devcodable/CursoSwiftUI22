@@ -10,7 +10,6 @@
 		2072911B27B55C29003110FC /* AppleDEXtoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072911A27B55C29003110FC /* AppleDEXtoreApp.swift */; };
 		2072911D27B55C29003110FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072911C27B55C29003110FC /* ContentView.swift */; };
 		2072911F27B55C2E003110FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2072911E27B55C2E003110FC /* Assets.xcassets */; };
-		2072912227B55C2E003110FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2072912127B55C2E003110FC /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,7 +17,6 @@
 		2072911A27B55C29003110FC /* AppleDEXtoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleDEXtoreApp.swift; sourceTree = "<group>"; };
 		2072911C27B55C29003110FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2072911E27B55C2E003110FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2072912127B55C2E003110FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,17 +52,8 @@
 				2072911A27B55C29003110FC /* AppleDEXtoreApp.swift */,
 				2072911C27B55C29003110FC /* ContentView.swift */,
 				2072911E27B55C2E003110FC /* Assets.xcassets */,
-				2072912027B55C2E003110FC /* Preview Content */,
 			);
 			path = AppleDEXtore;
-			sourceTree = "<group>";
-		};
-		2072912027B55C2E003110FC /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2072912127B55C2E003110FC /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +114,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2072912227B55C2E003110FC /* Preview Assets.xcassets in Resources */,
 				2072911F27B55C2E003110FC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
