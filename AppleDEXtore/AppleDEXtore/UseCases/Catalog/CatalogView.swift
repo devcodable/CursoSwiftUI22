@@ -25,9 +25,26 @@ struct CatalogView: View {
                 .padding(.horizontal, 20)
                 
                 ScrollView {
-                    ForEach(self.viewModel.catalog.products) { product in
-                        if product.category == self.viewModel.selectedCategory {
-                            ProductView(product: product)
+                    ForEach(self.$viewModel.catalog.products) { product in
+                        if product.category.wrappedValue == self.viewModel.selectedCategory {
+                            
+                            ProductView(product: product) {
+                                self.viewModel.cartList.append(product.wrappedValue)
+                                product.isInCart.wrappedValue = true
+                                product.inCart.wrappedValue = 1
+                                for p in self.viewModel.cartList {
+                                    print(p.name)
+                                }
+                            } removeFromCartAction: {
+                                self.viewModel.cartList = self.viewModel.cartList.filter { p in
+                                    p.id != product.id
+                                }
+                                product.isInCart.wrappedValue = false
+                                product.inCart.wrappedValue = 0
+                                for p in self.viewModel.cartList {
+                                    print(p.name)
+                                }
+                            }
                         }
                     }
                 }
