@@ -21,10 +21,12 @@ class ProductModelView: Identifiable {
     
     var id = UUID()
     var name: String = ""
-    var price: Double = 0
+    var price: Int = 0
     var description: String = ""
     var category: ProductCategory?
     var image: String = ""
+    var isInCart: Bool = false
+    var inCart: Int = 0
     
     init(modelServer: ProductModelServer?) {
         guard let modelServer = modelServer else { return }

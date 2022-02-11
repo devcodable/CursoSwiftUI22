@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShoppingCart: View {
     
-    @Binding var cartItems: [ShoppingCartModelView]
+    @Binding var cartItems: [ProductModelView]
     
     @State var navigateForward: Bool = false
     
@@ -18,10 +18,10 @@ struct ShoppingCart: View {
             ScrollView {
                 ForEach(0..<cartItems.count, id: \.self) { index in
                     ShoppintDetails(
-                        cantidad: $cartItems[index].cantidad,
-                        image: cartItems[index].product.image,
-                        price: cartItems[index].product.price,
-                        title: cartItems[index].product.name,
+                        cantidad: $cartItems[index].inCart,
+                        image: cartItems[index].image,
+                        price: cartItems[index].price,
+                        title: cartItems[index].name,
                         deleteCallback: {
                             deleteItem(index: index)
                         }
@@ -68,7 +68,7 @@ struct ShoppintDetails: View {
     @Binding var cantidad: Int
     
     let image: String
-    let price: Double
+    let price: Int
     let title: String
     
     let deleteCallback: () -> Void
@@ -83,7 +83,7 @@ struct ShoppintDetails: View {
                 Text(title)
                     .font(.title)
                 Spacer()
-                Text(String(format: "%.0f $", price))
+                Text("\(price)")
                     .font(.title2)
                 HStack(alignment: .center, spacing: 25) {
                     Menu {

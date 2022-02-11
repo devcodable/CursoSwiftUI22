@@ -12,9 +12,13 @@ class CatalogViewModel: ObservableObject {
     
     @Published var catalog: CatalogModelView = CatalogModelView(modelServer: nil)
     @Published var selectedCategory: ProductCategory = .iphone
-    @Published var cartList: [ShoppingCartModelView] = []
+    @Published var cartList: [ProductModelView] = []
     
     @Published var navigateToShoppingCart = false
+    
+    init() {
+        getData()
+    }
     
     func getData() {
         if let url = Bundle.main.url(forResource: "catalog", withExtension: "json"),

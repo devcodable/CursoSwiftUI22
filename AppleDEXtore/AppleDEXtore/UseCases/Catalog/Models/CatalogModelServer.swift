@@ -13,7 +13,7 @@ struct CatalogModelServer: Codable {
 
 struct ProductModelServer: Codable {
     let name: String?
-    let price: Double?
+    let price: Int?
     let description: String?
     let category: String?
     let image: String?

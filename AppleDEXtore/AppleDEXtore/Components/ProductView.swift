@@ -8,38 +8,83 @@
 import SwiftUI
 
 struct ProductView: View {
-    var product: ProductModelView
     
-    init(product: ProductModelView){
-        self.product = product
+    @Binding var product: ProductModelView
+    var addToCart: () -> ()
+    var removeFromCart: () -> ()
+    @State private var collapsed: Bool = true
+    
+    init(product: Binding<ProductModelView>,
+         addToCartAction: @escaping () -> (),
+         removeFromCartAction: @escaping () -> ()){
+        self._product = product
+        self.addToCart = addToCartAction
+        self.removeFromCart = removeFromCartAction
     }
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
+            HStack(alignment: .top, spacing: 10) {
                 Image(product.image)
                     .resizable()
                     .scaledToFit()
                     .frame(maxHeight: 100, alignment: .leading)
                 
-                Spacer()
-                
-                VStack {
+                VStack(spacing:5) {
                     Text(product.name)
                         .font(.headline)
                         .fontWeight(.semibold)
                     Divider()
+                        .padding(.bottom, 15)
+                    HStack{
+                        Text(product.description)
+                        Spacer()
+                    }
                     
-                    Text(product.description)
+                    if !collapsed {
+                        HStack(spacing: 10) {
+                            
+                            Text("\(product.price)€")
+                                .bold()
+                            
+                            Spacer()
+                            
+                            if !product.isInCart {
+                                Button {
+                                    self.addToCart()
+                                } label: {
+                                    Image(systemName: "cart.badge.plus")
+                                        .foregroundColor(Color.green)
+                                }
+                            } else {
+                                
+                                CartCapsule(count: self.$product.inCart)
+                                Button {
+                                    self.removeFromCart()
+                                } label: {
+                                    Image(systemName: "cart.badge.minus")
+                                        .foregroundColor(Color.red)
+                                }
+                            }
+                            
+                            
+                        }
+                        .padding(.top, 20)
+                        .padding(.bottom, 10)
+                    }
+                    
                 }
             }
-            .padding(.horizontal, 30)
-            .padding(.vertical, 20)
+            .padding(.horizontal, 15)
+            .padding(.top, 10)
         }
-        .frame(maxHeight: 150)
-        .background(Color.white)
+        .frame(maxHeight: collapsed ? 150 : .infinity)
+        .background(Color.white.opacity(0.8).blur(radius: 20))
         .cornerRadius(15)
         .shadow(radius: 10)
         .padding(.horizontal, 20)
+        .onTapGesture {
+            self.collapsed.toggle()
+        }
     }
 }
