@@ -12,7 +12,7 @@ struct AppleDEXtoreApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ShoppingCart()
+                CatalogView()
                     .navigationViewStyle(.stack)
                     .navigationBarTitleDisplayMode(.inline)
             }

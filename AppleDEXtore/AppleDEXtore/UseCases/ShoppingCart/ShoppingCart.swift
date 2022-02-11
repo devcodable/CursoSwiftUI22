@@ -9,25 +9,26 @@ import SwiftUI
 
 struct ShoppingCart: View {
     
-    @State var cantidades : [Int] = [1, 2, 3]
+    @Binding var cartItems: [ShoppingCartModelView]
+    
     @State var navigateForward: Bool = false
     
     var body: some View {
         VStack {
             ScrollView {
-                ForEach(Array($cantidades.enumerated()), id: \.offset) { index, cantidad in
+                ForEach(0..<cartItems.count, id: \.self) { index in
                     ShoppintDetails(
-                        cantidad: cantidad,
-                        image: "scribble",
-                        price: 56,
-                        title: "Iphone 8",
+                        cantidad: $cartItems[index].cantidad,
+                        image: cartItems[index].product.image,
+                        price: cartItems[index].product.price,
+                        title: cartItems[index].product.name,
                         deleteCallback: {
                             deleteItem(index: index)
                         }
                     )
                         .padding()
                 }
-            }
+            }.padding(.top)
             Button(action: navigateToPayment) {
                 Text("Pagar")
                     .font(.title)
@@ -47,11 +48,14 @@ struct ShoppingCart: View {
                 EmptyView()
             }
         }
+        .navigationViewStyle(.stack)
+        .navigationBarTitle("", displayMode: .inline)
+        
         .background(Color.teal)
     }
     
     func deleteItem(index: Int) {
-        print("\(index) deleted")
+        cartItems.remove(at: index)
     }
     
     func navigateToPayment() {
@@ -64,14 +68,14 @@ struct ShoppintDetails: View {
     @Binding var cantidad: Int
     
     let image: String
-    let price: Float
+    let price: Double
     let title: String
     
     let deleteCallback: () -> Void
     
     var body: some View {
         HStack() {
-            Image(systemName: image)
+            Image(image)
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 100)
@@ -81,10 +85,10 @@ struct ShoppintDetails: View {
                 Spacer()
                 Text(String(format: "%.0f $", price))
                     .font(.title2)
-                HStack(alignment: .center) {
+                HStack(alignment: .center, spacing: 25) {
                     Menu {
                         Picker(selection: $cantidad) {
-                            ForEach([0,1,2,3,4], id: \.self) {
+                            ForEach(0...5, id: \.self) {
                                 Text("\($0)")
                             }
                         } label: {}
@@ -92,7 +96,6 @@ struct ShoppintDetails: View {
                         Text("Cantidad: \(cantidad)")
                             .font(.title2)
                     }
-                    Spacer()
                     Image(systemName: "trash")
                         .foregroundColor(.red)
                         .onTapGesture(perform: deleteCallback)
@@ -109,13 +112,5 @@ struct ShoppintDetails: View {
                     style: StrokeStyle(lineWidth: 3, dash: [15.0])
                 ).foregroundColor(.orange)
         )
-    }
-}
-
-
-
-struct ShoppingCart_Previews: PreviewProvider {
-    static var previews: some View {
-        ShoppingCart()
     }
 }

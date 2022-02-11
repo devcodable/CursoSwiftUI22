@@ -40,9 +40,7 @@ struct CatalogView: View {
                 HStack {
                     Spacer()
                     
-                    Button {
-                        
-                    } label: {
+                    Button(action: CartButtonPushed){
                         Group {
                             if self.viewModel.cartList.isEmpty {
                                 Image(systemName: "cart")
@@ -60,9 +58,18 @@ struct CatalogView: View {
                     .shadow(radius: 10)
                 }
             }
+            NavigationLink(isActive: self.$viewModel.navigateToShoppingCart) {
+                ShoppingCart(cartItems: self.$viewModel.cartList)
+            } label: {
+                EmptyView()
+            }
         }
         .onAppear {
             self.viewModel.getData()
         }
+    }
+    
+    func CartButtonPushed() {
+        self.viewModel.navigateToCart()
     }
 }
