@@ -23,14 +23,14 @@ struct ProductView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top, spacing: 10) {
                 Image(product.image)
                     .resizable()
                     .scaledToFit()
                     .frame(maxHeight: 100, alignment: .leading)
                 
-                VStack(spacing:5) {
+                VStack(spacing: 5) {
                     Text(product.name)
                         .font(.headline)
                         .fontWeight(.semibold)
@@ -38,17 +38,19 @@ struct ProductView: View {
                         .padding(.bottom, 15)
                     HStack{
                         Text(product.description)
+                            .frame(maxHeight: .infinity)
+//                            .background(Color.brown)
                         Spacer()
                     }
                     
                     if !collapsed {
                         HStack(spacing: 10) {
-                            
+
                             Text("\(product.price)€")
                                 .bold()
-                            
+
                             Spacer()
-                            
+
                             if !product.isInCart {
                                 Button {
                                     self.addToCart()
@@ -57,7 +59,7 @@ struct ProductView: View {
                                         .foregroundColor(Color.green)
                                 }
                             } else {
-                                
+
                                 CartCapsule(count: self.$product.inCart)
                                 Button {
                                     self.removeFromCart()
@@ -66,17 +68,17 @@ struct ProductView: View {
                                         .foregroundColor(Color.red)
                                 }
                             }
-                            
-                            
                         }
                         .padding(.top, 20)
                         .padding(.bottom, 10)
+                        .frame(height: 50)
                     }
                     
                 }
             }
             .padding(.horizontal, 15)
             .padding(.top, 10)
+                
         }
         .frame(maxHeight: collapsed ? 150 : .infinity)
         .background(Color.white.opacity(0.8).blur(radius: 20))

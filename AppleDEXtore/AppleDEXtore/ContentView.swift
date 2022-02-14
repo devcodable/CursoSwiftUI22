@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CatalogView()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        NavigationView {
+            CatalogView()
+                .navigationViewStyle(.stack)
+                .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
