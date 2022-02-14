@@ -9,108 +9,93 @@ import SwiftUI
 
 struct ShoppingCart: View {
     
+    @SwiftUI.Environment(\.dismiss) var dismiss
+    
     @Binding var cartItems: [ProductModelView]
     
     @State var navigateForward: Bool = false
+    @State var showDialog: Bool = false
     
     var body: some View {
         VStack {
-            ScrollView {
-                ForEach(0..<cartItems.count, id: \.self) { index in
-                    ShoppintDetails(
-                        cantidad: $cartItems[index].inCart,
-                        image: cartItems[index].image,
-                        price: cartItems[index].price,
-                        title: cartItems[index].name,
-                        deleteCallback: {
-                            deleteItem(index: index)
-                        }
-                    )
-                        .padding()
+            if cartItems.count > 0 {
+                ScrollView {
+                    ForEach(0..<cartItems.count, id: \.self) { index in
+                        CartDetailView(
+                            cantidad: $cartItems[index].inCart,
+                            image: cartItems[index].image,
+                            price: cartItems[index].price,
+                            title: cartItems[index].name,
+                            deleteCallback: {
+                                deleteItem(index: index)
+                            }
+                        )
+                            .padding()
+                    }
+                }.padding(.top)
+                Button(action: continueClicked) {
+                    Text("Pagar")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(Color.purple)
+                        )
                 }
-            }.padding(.top)
-            Button(action: navigateToPayment) {
-                Text("Pagar")
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .foregroundColor(Color.purple)
-                    )
+                .buttonStyle(.plain)
+                .frame(height: 60)
+                .padding([.bottom, .leading, .trailing])
+            } else {
+                Text("El carrito de la compra está vacio.")
+                Button(action: navigateBack) {
+                    Text("Volver atras")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(Color.purple)
+                        )
+                }
+                .buttonStyle(.plain)
+                .frame(height: 60)
+                .padding([.bottom, .leading, .trailing])
             }
-            .buttonStyle(.plain)
-            .frame(height: 60)
-            .padding([.bottom, .leading, .trailing])
             NavigationLink(isActive: self.$navigateForward) {
                 Text("Payment")
             } label: {
                 EmptyView()
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationViewStyle(.stack)
         .navigationBarTitle("", displayMode: .inline)
-        
         .background(Color.teal)
+        .alert("Estás seguro de que quieres continuar?", isPresented: $showDialog) {
+            Button("Sí", action: navigateToPayment)
+            Button("No", role: .cancel) {
+                showDialog = false
+            }
+        }
     }
     
     func deleteItem(index: Int) {
+        cartItems[index].inCart = 0
+        cartItems[index].isInCart = false
         cartItems.remove(at: index)
     }
     
+    func continueClicked() {
+        self.showDialog = true
+    }
+    
     func navigateToPayment() {
+        showDialog = false
         self.navigateForward = true
     }
     
-}
-
-struct ShoppintDetails: View {
-    @Binding var cantidad: Int
-    
-    let image: String
-    let price: Int
-    let title: String
-    
-    let deleteCallback: () -> Void
-    
-    var body: some View {
-        HStack() {
-            Image(image)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 100)
-            VStack {
-                Text(title)
-                    .font(.title)
-                Spacer()
-                Text("\(price)")
-                    .font(.title2)
-                HStack(alignment: .center, spacing: 25) {
-                    Menu {
-                        Picker(selection: $cantidad) {
-                            ForEach(0...5, id: \.self) {
-                                Text("\($0)")
-                            }
-                        } label: {}
-                    } label: {
-                        Text("Cantidad: \(cantidad)")
-                            .font(.title2)
-                    }
-                    Image(systemName: "trash")
-                        .foregroundColor(.red)
-                        .onTapGesture(perform: deleteCallback)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .overlay(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(
-                    style: StrokeStyle(lineWidth: 3, dash: [15.0])
-                ).foregroundColor(.orange)
-        )
+    func navigateBack() {
+        self.dismiss()
     }
 }

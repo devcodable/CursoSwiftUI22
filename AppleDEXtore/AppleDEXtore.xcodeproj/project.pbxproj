@@ -19,6 +19,7 @@
 		2072913827B563BB003110FC /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072913727B563BB003110FC /* ProductView.swift */; };
 		2072913B27B6631A003110FC /* CartCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2072913A27B66319003110FC /* CartCapsule.swift */; };
 		69B1A48D27B57609007B619E /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1A48C27B57609007B619E /* ShoppingCart.swift */; };
+		69CE163027BA5DD200123ED9 /* CartDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE162F27BA5DD200123ED9 /* CartDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		2072913727B563BB003110FC /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		2072913A27B66319003110FC /* CartCapsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCapsule.swift; sourceTree = "<group>"; };
 		69B1A48C27B57609007B619E /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
+		69CE162F27BA5DD200123ED9 /* CartDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				2072913727B563BB003110FC /* ProductView.swift */,
 				2072913A27B66319003110FC /* CartCapsule.swift */,
+				69CE162F27BA5DD200123ED9 /* CartDetailView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				2072912F27B56023003110FC /* CatalogModelView.swift in Sources */,
 				2072911D27B55C29003110FC /* ContentView.swift in Sources */,
 				2072913327B56039003110FC /* CatalogViewModel.swift in Sources */,
+				69CE163027BA5DD200123ED9 /* CartDetailView.swift in Sources */,
 				2072913B27B6631A003110FC /* CartCapsule.swift in Sources */,
 				2072912D27B56015003110FC /* CatalogModelServer.swift in Sources */,
 				2072913827B563BB003110FC /* ProductView.swift in Sources */,
