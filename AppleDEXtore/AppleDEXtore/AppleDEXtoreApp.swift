@@ -11,11 +11,7 @@ import SwiftUI
 struct AppleDEXtoreApp: App {
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                CatalogView()
-                    .navigationViewStyle(.stack)
-                    .navigationBarTitleDisplayMode(.inline)
-            }
+            ContentView()
         }
     }
 }

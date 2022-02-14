@@ -24,6 +24,7 @@ struct CatalogView: View {
                 .padding(.vertical, 30)
                 .padding(.horizontal, 20)
                 
+                // MARK: Product List
                 ScrollView {
                     ForEach(self.$viewModel.catalog.products) { product in
                         if product.category.wrappedValue == self.viewModel.selectedCategory {
@@ -48,39 +49,49 @@ struct CatalogView: View {
                         }
                     }
                 }
+                .padding(.bottom, 50)
             }
             .background(Color.pink.opacity(0.3))
+            .padding(.top, 50)
             
-            VStack {
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    
-                    Button(action: CartButtonPushed){
-                        Group {
-                            if self.viewModel.cartList.isEmpty {
-                                Image(systemName: "cart")
-                            } else {
-                                Image(systemName: "cart.fill")
-                            }
-                        }
-                        .frame(minWidth: 56)
-                        .foregroundColor(.white)
+            Button(action: CartButtonPushed){
+                Group {
+                    if self.viewModel.cartList.isEmpty {
+                        Image(systemName: "cart")
+                    } else {
+                        Image(systemName: "cart.fill")
                     }
-                    .frame(height: 100)
-                    .background(Color.purple)
+                }
+                .frame(minWidth: 56)
+                .foregroundColor(.white)
+            }
+            .frame(width: 60, height: 60)
+            .clipped()
+            .background(Color.purple)
+            .clipShape(Circle())
+            .padding([.trailing, .bottom], 30)
+            .shadow(radius: 10)
+            .overlay() {
+                if !self.viewModel.cartList.isEmpty {
+                    HStack {
+                        Text("\(self.viewModel.getCartCount())")
+                            .foregroundColor(.white)
+                            .font(.system(size: 14))
+                            .padding(5)
+                    }
+                    .background(Color.blue)
                     .clipShape(Circle())
-                    .padding(.trailing, 30)
-                    .shadow(radius: 10)
+                    .offset(x: 5, y: -35)
                 }
             }
+            .position(x: UIScreen.main.bounds.width - 50, y: UIScreen.main.bounds.height - 60)
             NavigationLink(isActive: self.$viewModel.navigateToShoppingCart) {
                 ShoppingCart(cartItems: self.$viewModel.cartList)
             } label: {
                 EmptyView()
             }
         }
+        .edgesIgnoringSafeArea(.all)
     }
     
     func CartButtonPushed() {

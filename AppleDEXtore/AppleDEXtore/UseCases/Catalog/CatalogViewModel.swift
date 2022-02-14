@@ -33,6 +33,15 @@ class CatalogViewModel: ObservableObject {
         }
     }
     
+    func getCartCount() -> Int {
+        var count = 0
+        for product in cartList {
+            count += product.inCart
+        }
+        
+        return count
+    }
+    
     func navigateToCart() {
         self.navigateToShoppingCart = true
     }

@@ -42,6 +42,7 @@ struct ShoppingCart: View {
             .buttonStyle(.plain)
             .frame(height: 60)
             .padding([.bottom, .leading, .trailing])
+            
             NavigationLink(isActive: self.$navigateForward) {
                 Text("Payment")
             } label: {
