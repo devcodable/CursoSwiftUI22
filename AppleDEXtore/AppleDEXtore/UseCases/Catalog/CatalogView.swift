@@ -47,18 +47,12 @@ struct CatalogView: View {
                                 self.viewModel.cartList.append(product.wrappedValue)
                                 product.isInCart.wrappedValue = true
                                 product.inCart.wrappedValue = 1
-                                for p in self.viewModel.cartList {
-                                    print(p.name)
-                                }
                             } removeFromCartAction: {
                                 self.viewModel.cartList = self.viewModel.cartList.filter { p in
                                     p.id != product.id
                                 }
                                 product.isInCart.wrappedValue = false
                                 product.inCart.wrappedValue = 0
-                                for p in self.viewModel.cartList {
-                                    print(p.name)
-                                }
                             }
                         }
                     }
@@ -80,7 +74,7 @@ struct CatalogView: View {
             // 4.-  El modificador '.overlay()' sirve para colocar vistas encima de otras.
             // 5.-  El modificador '.offset()' posicionará el componente afectado en función de la posición del padre
             // 6.-  El modificador '.position()' posicionará el componente afectado de manera absoluta
-            NavigationLink(destination: ShoppingCart(cartItems: self.$viewModel.cartList)) {      // 1
+            NavigationLink(destination: ShoppingCartView(cartItems: self.$viewModel.cartList)) {      // 1
                 
                 Group {                                     // 2
                     if self.viewModel.cartList.isEmpty {

@@ -18,7 +18,7 @@
         "name": "iPhone 13",
         "price": 809,
         "image": "iphone13",
-        "description": "¿Está chulo verdad?",
+        "description": "El iPhone de la mala suerte (para el bolsillo)",
         "category": "iphone"
     },
     {
@@ -60,7 +60,7 @@
         "name": "Mac Pro",
         "price": 6499,
         "image": "macpro",
-        "description": "Parece un rallador de queso pero en verdad es un ordenador muy potente (y además ralla queso)",
+        "description": "Parece un rallador de queso pero en realidad es un ordenador muy potente (y además ralla queso).",
         "category": "mac"
     },
     {

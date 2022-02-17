@@ -39,7 +39,7 @@ struct ProductView: View {
                 Image(product.image)
                     .resizable()                                    // 1
                     .scaledToFit()
-                    .frame(maxHeight: 100, alignment: .leading)     // 2
+                    .frame(maxWidth: 80, maxHeight: 100, alignment: .leading)     // 2
                     
                 VStack(spacing: 5) {
                     Text(product.name)
@@ -123,7 +123,7 @@ struct ProductDetailView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 35)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.white)
                                 .shadow(radius: 5)
                         }
                     } else {

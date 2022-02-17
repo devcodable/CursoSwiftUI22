@@ -7,25 +7,26 @@
 
 import SwiftUI
 
-struct ShoppingCart: View {
+struct ShoppingCartView: View {
     
     @SwiftUI.Environment(\.dismiss) var dismiss
     
-    @Binding var cartItems: [ProductModelView]
+    @ObservedObject var viewModel: ShoppingCartViewModel
     
     @State var navigateForward: Bool = false
     @State var showDialog: Bool = false
     
+    init(cartItems: Binding<[ProductModelView]>) {
+        self.viewModel = ShoppingCartViewModel(cartItems: cartItems)
+    }
+    
     var body: some View {
         VStack {
-            if cartItems.count > 0 {
+            if self.viewModel.cartItems.count > 0 {
                 ScrollView {
-                    ForEach(0..<cartItems.count, id: \.self) { index in
+                    ForEach(0..<self.viewModel.cartItems.count, id: \.self) { index in
                         CartDetailView(
-                            cantidad: $cartItems[index].inCart,
-                            image: cartItems[index].image,
-                            price: cartItems[index].price,
-                            title: cartItems[index].name,
+                            product: self.viewModel.cartItems[index],
                             deleteCallback: {
                                 deleteItem(index: index)
                             }
@@ -33,6 +34,13 @@ struct ShoppingCart: View {
                             .padding()
                     }
                 }.padding(.top)
+                
+                Spacer()
+                
+                Text("Total: \(self.viewModel.getTotal())€")
+                    .font(.title2)
+                    .bold()
+                
                 Button(action: continueClicked) {
                     Text("Pagar")
                         .font(.title)
@@ -62,6 +70,7 @@ struct ShoppingCart: View {
                 .frame(height: 60)
                 .padding([.bottom, .leading, .trailing])
             }
+            
             NavigationLink(isActive: self.$navigateForward) {
                 Text("Payment")
             } label: {
@@ -71,7 +80,7 @@ struct ShoppingCart: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationViewStyle(.stack)
         .navigationBarTitle("", displayMode: .inline)
-        .background(Color.teal)
+        .background(Color.teal.opacity(0.3))
         .alert("Estás seguro de que quieres continuar?", isPresented: $showDialog) {
             Button("Sí", action: navigateToPayment)
             Button("No", role: .cancel) {
@@ -81,9 +90,9 @@ struct ShoppingCart: View {
     }
     
     func deleteItem(index: Int) {
-        cartItems[index].inCart = 0
-        cartItems[index].isInCart = false
-        cartItems.remove(at: index)
+        self.viewModel.cartItems[index].inCart.wrappedValue = 0
+        self.viewModel.cartItems[index].isInCart.wrappedValue = false
+        self.viewModel.cartItems.wrappedValue.remove(at: index)
     }
     
     func continueClicked() {
