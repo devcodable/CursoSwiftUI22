@@ -2,7 +2,7 @@
 //  CartCapsule.swift
 //  AppleDEXtore
 //
-//  Created by David Cuñado Gil on 11/2/22.
+//  Created by David Cuñado and Jorge Marciel for 18/02/2022 SwiftUI Course
 //
 
 import SwiftUI
@@ -13,10 +13,12 @@ struct CartCapsule: View {
     
     var body: some View {
         HStack(spacing: 0) {
+            
+            // MARK: Minus button
+            // 1.-  Con '.allowsHitTesting()' establecemos cuándo se puede interaccionar con el componente en función de un Bool
+            // 2.-  Operador ternario para establecer la opacidad del componente.
             Button {
-                if count > 1 {
-                    count-=1
-                }
+                count-=1
             } label: {
                 Text("-")
                     .foregroundColor(.white)
@@ -25,6 +27,8 @@ struct CartCapsule: View {
             }
             .background(Color.gray)
             .frame(alignment: .leading)
+            .allowsHitTesting(count > 1)        // 1
+            .opacity(count > 1 ? 1 : 0.5)       // 2
             
             HStack {
                 Spacer()

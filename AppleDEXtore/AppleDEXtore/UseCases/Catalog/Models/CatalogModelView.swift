@@ -2,10 +2,11 @@
 //  CatalogModelView.swift
 //  AppleDEXtore
 //
-//  Created by David Cuñado Gil on 10/2/22.
+//  Created by David Cuñado and Jorge Marciel for 18/02/2022 SwiftUI Course
 //
 
 import Foundation
+import SwiftUI
 
 class CatalogModelView {
     var products: [ProductModelView] = []
@@ -42,4 +43,15 @@ enum ProductCategory: String {
     case iphone = "iphone"
     case mac = "mac"
     case ipad = "ipad"
+    
+    func getBackgroundColor() -> Color {
+        switch self {
+        case .iphone:
+            return .pink
+        case .ipad:
+            return .mint
+        default:
+            return .indigo
+        }
+    }
 }

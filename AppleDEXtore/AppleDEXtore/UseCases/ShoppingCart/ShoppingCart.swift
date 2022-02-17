@@ -2,7 +2,7 @@
 //  ShoppingCart.swift
 //  AppleDEXtore
 //
-//  Created by Jorge Marciel Pariente on 10/2/22.
+//  Created by David Cuñado and Jorge Marciel for 18/02/2022 SwiftUI Course
 //
 
 import SwiftUI

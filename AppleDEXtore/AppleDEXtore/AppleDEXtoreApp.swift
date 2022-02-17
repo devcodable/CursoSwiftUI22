@@ -2,7 +2,7 @@
 //  AppleDEXtoreApp.swift
 //  AppleDEXtore
 //
-//  Created by David Cuñado Gil on 10/2/22.
+//  Created by David Cuñado and Jorge Marciel for 18/02/2022 SwiftUI Course
 //
 
 import SwiftUI
