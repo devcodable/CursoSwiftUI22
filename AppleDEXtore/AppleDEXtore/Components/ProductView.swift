@@ -37,7 +37,7 @@ struct ProductView: View {
                 // 3.-  Con '.ontapGesture() { }' añadimos un listener para el evento tocar y la acción a realizar cuando se produzca.
                 // 4.-  Para mostrar vistas modales utilizaremos '.sheet()'.
                 Image(product.image)
-                    .resizable()                                    // 1
+                    .resizable()                                                  // 1
                     .scaledToFit()
                     .frame(maxWidth: 80, maxHeight: 100, alignment: .leading)     // 2
                     

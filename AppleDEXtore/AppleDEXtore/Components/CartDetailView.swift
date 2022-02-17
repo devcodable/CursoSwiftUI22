@@ -18,7 +18,8 @@ struct CartDetailView: View {
                 Image(product.image)
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: 100)
+                    .frame(maxWidth: 100, maxHeight: 120)
+                
                 VStack(spacing: 15) {
                     Text(product.name).font(.title)
                     Text("\(product.price) €").font(.title2)
@@ -34,9 +35,8 @@ struct CartDetailView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
-                    .stroke(
-                        style: StrokeStyle(lineWidth: 3, dash: [15.0])
-                    ).foregroundColor(.orange)
+                    .stroke(style: StrokeStyle(lineWidth: 3, dash: [15.0, 0]))
+                    .foregroundColor(.gray)
             )
             Image(systemName: "trash")
                 .foregroundColor(.red)

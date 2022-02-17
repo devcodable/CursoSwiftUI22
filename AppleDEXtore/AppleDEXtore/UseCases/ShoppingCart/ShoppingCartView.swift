@@ -42,8 +42,8 @@ struct ShoppingCartView: View {
                     .bold()
                 
                 Button(action: continueClicked) {
-                    Text("Pagar")
-                        .font(.title)
+                    Text("Finalizar y pagar")
+                        .font(.title2)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(
@@ -55,10 +55,11 @@ struct ShoppingCartView: View {
                 .frame(height: 60)
                 .padding([.bottom, .leading, .trailing])
             } else {
-                Text("El carrito de la compra está vacio.")
+                Text("El carrito de la compra está vacío.")
+                    .font(.title2)
                 Button(action: navigateBack) {
-                    Text("Volver atras")
-                        .font(.title)
+                    Text("Seguir comprando")
+                        .font(.title2)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(
@@ -81,7 +82,7 @@ struct ShoppingCartView: View {
         .navigationViewStyle(.stack)
         .navigationBarTitle("", displayMode: .inline)
         .background(Color.teal.opacity(0.3))
-        .alert("Estás seguro de que quieres continuar?", isPresented: $showDialog) {
+        .alert("¿Está seguro de que desea continuar?", isPresented: $showDialog) {
             Button("Sí", action: navigateToPayment)
             Button("No", role: .cancel) {
                 showDialog = false
