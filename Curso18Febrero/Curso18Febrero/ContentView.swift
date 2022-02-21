@@ -9,22 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ScrollView {
-            VStack {
-                ProductView(
-                    image: "ipad",
-                    title: "Iphone 13",
-                    description: "Como un ipad Como un ipad Como un ipad Como un ipad"
-                )
-                ProductView(
-                    image: "iphone11",
-                    title: "Iphone 13",
-                    description: "Como un ipad Como un ipad Como un ipad Como un ipad"
-                )
-            }
+        NavigationView {
+            CatalogView()
+                .navigationViewStyle(.stack)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
         }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.pink.opacity(0.3))
     }
 }
 

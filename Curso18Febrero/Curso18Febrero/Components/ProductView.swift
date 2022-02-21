@@ -8,30 +8,37 @@
 import SwiftUI
 
 struct ProductView: View {
-    let image: String
-    let title: String
-    let description: String
+    
+    @Binding var product: ProductModelView
+    @State private var showModal = false
+    var addToCart: () -> ()
+    var removeFromCart: () -> ()
     
     var body: some View {
         VStack {
             HStack(alignment: .top) {
-                Image(image)
+                Image(product.image)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 80, height: 100)
                 VStack {
-                    Text(title)
+                    Text(product.name)
                         .font(.headline)
                         .fontWeight(.semibold)
                     Divider()
                         .padding(.bottom)
-                    Text(description)
-                        .font(.system(size: 14, weight: .semibold))
+                    
+                    HStack {
+                        Text(product.description)
+                            .font(.system(size: 14, weight: .semibold))
+                        
+                        Spacer()
+                    }
                 }
                 .padding(.leading)
             }
             .padding()
-  
+            
         }
         .frame(maxHeight: 150)
         .background {
@@ -40,16 +47,15 @@ struct ProductView: View {
         .cornerRadius(15)
         .shadow(radius: 10)
         .padding(.horizontal, 20)
-    }
-}
-
-struct ProductView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductView(
-            image: "iphone11",
-            title: "Iphone 13",
-            description: "Como un ipad Como un ipad Como un ipad Como un ipad"
-        )
-            .previewLayout(.sizeThatFits)
+        .sheet(isPresented: self.$showModal) {
+            ProductDetailView(product: $product) {
+                self.addToCart()
+            } removeFromCart: {
+                self.removeFromCart()
+            }
+        }
+        .onTapGesture {
+            self.showModal.toggle()
+        }
     }
 }

@@ -8,13 +8,62 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    
+    @Binding var product: ProductModelView
+    var addToCart: () -> ()
+    var removeFromCart: () -> ()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        VStack {
+            Image(product.image)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+            
+            Text(product.name)
+                .font(.largeTitle)
+                .bold()
+            
+            Divider()
+            
+            Text(product.description)
+                .multilineTextAlignment(.center)
+            
+            Spacer()
+            HStack {
+                Text("\(product.price)€")
+                
+                Spacer()
+                
+                if !product.isInCart {
+                    
+                    Button {
+                        self.addToCart()
+                    } label: {
+                        Image(systemName: "cart.badge.plus")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 35)
+                            .foregroundColor(.white)
+                    }
+                } else {
+                    
+                    CartCapsuleView(count: $product.cantityInCart)
+                    
+                    Button {
+                        self.removeFromCart()
+                    } label: {
+                        Image(systemName: "cart.badge.minus")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 35)
+                            .foregroundColor(.red)
+                    }
+                }
 
-struct ProductDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailView()
+            }
+        }
+        .padding(.horizontal, 20)
+        .background(Color.mint.opacity(0.3))
     }
 }
